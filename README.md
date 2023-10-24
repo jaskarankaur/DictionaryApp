@@ -1,0 +1,1 @@
+Search meaning for any english word using this app.

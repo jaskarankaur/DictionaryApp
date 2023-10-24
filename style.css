@@ -1,0 +1,121 @@
+*{
+    font-family: 'Roboto', sans-serif;
+    background-color: aliceblue;
+}
+
+body{
+    width: 60%;
+    margin: auto;
+    border-left: 1px solid rgba(78, 74, 74, 0.5);
+    border-right: 1px solid rgb(78, 74, 74, 0.5);
+    padding: 1rem;
+    height: 100vh;
+}
+
+#myNav{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-top: 1rem;  
+}
+#myNav div{
+    opacity: 0.6;
+}
+#myNav div:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+main{
+    line-height: 2rem;
+    padding: 1rem;
+}
+
+hr{
+    opacity: 0.3;
+}
+
+.searchBar{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 0.2rem;
+}
+.searchBar label{
+    cursor: pointer;
+}
+
+.searchBar input{
+    width: 60%;
+    border: 1px solid rgb(58, 56, 56, 0.3);
+    border-top-left-radius: 0.4rem;
+    border-bottom-left-radius: 0.4rem;
+    margin-right: 0px;
+}
+
+.searchBar label{
+    background-color: rgba(151, 151, 155, 0.639);
+    width: 2rem;
+    text-align: center;
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+}
+
+.searchBar label:hover{
+    background-color: rgba(116, 116, 230, 0.4);
+}
+
+.word{
+    font-size: xx-large;
+}
+.wordSpell i{
+    cursor: pointer;
+}
+
+.wordSearched{
+    margin: 1.3rem 0rem;
+}
+
+.inactive{
+    display: none;
+}
+
+.explanation{
+    margin: 1.5rem 0rem;
+}
+.wordSpeach{
+    font-style: italic;
+    font-size: medium;
+}
+
+.speachExplain{
+    margin: 0rem 0.4rem;
+}
+
+.defStyle{
+    font-size: small;
+}
+
+.exampleStyle{
+    color: rgba(47, 45, 45, 0.934);
+    font-size: small;
+}
+
+.synDivStyle{
+    margin: 1rem;
+}
+
+audio{
+    display: none;
+}
+
+.buttonStyle{
+    padding: 0.2rem 1rem;
+    margin: 0.5rem;
+    border: 2px solid rgb(65, 62, 62);
+    border-radius: 0.5rem;
+    background-color: rgba(186, 173, 173, 0.79);
+    cursor: pointer;
+}
+
+
