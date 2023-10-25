@@ -5,7 +5,8 @@ let playAudio = document.querySelector(".wordSpell i");
 let main = document.querySelector("main");
 let meaning = document.createElement("div");
 let errorMsg = document.createElement("para");
-let myAudio = document.querySelector("audio");
+let myAudio = document.querySelector(".wordSpell button");
+let audio = document.querySelector("audio");
 
 search.addEventListener("click", async () => {
     let inp = document.querySelector(".searchBar input");
@@ -20,7 +21,7 @@ search.addEventListener("click", async () => {
         let res = await axios.get(searchUrl, config);
         wordSearched.classList.remove("inactive");
         displayInfo(res);
-        console.log(res.data[0]);
+        console.log(res);
 
     } catch (err) {
         errorMsg.innerText = '"Please search for a valid word"';
@@ -87,39 +88,58 @@ playAudio.addEventListener("click", async () => {
     let inp = document.querySelector(".searchBar input");
     let str = inp.value + "";
     let searchUrl = url + str;
-    myAudio.innerHTML = "";
+    audio.pause();
+    audio.currentTime = 0;
+    audio.innerHTML = "";
     try {
-        let config = { headers: { "content-type": "application/json;" } };
-        let res = await axios.get(searchUrl, config);
-        let sources = res.data[0].phonetics;
-        loadSources(sources)
-            .then((resolve) => {
-                console.log(sources);
-                myAudio.muted = false;
-                myAudio.play();
-            });
+        fetch(searchUrl)
+        .then((response)=>{
+            return response.json();
+        })
+        .then((res)=>{
+            console.log(res);
+            let sources = res[0].phonetics;  
+            console.log(sources);          
+            return sources;
+        })
+        .then((sources)=>{
+            for (let i in sources) {
+                let source = document.createElement("source");
+                source.src = sources[i].audio;
+                console.log(sources[i].audio);
+                audio.appendChild(source);
+            }
+            return sources;
+        })
+        .then(()=>{
+            audio.load();
+            audio.play();
+        })
+        .catch((err)=>{
+            console.log(err);
+        });        
     } catch (err) {
         console.log(err);
     }
 });
 
-function loadSources(sources) {
-    return new Promise((resolve, reject) => {
-        let loadedSources = 0;
-        for (let i in sources) {
-            let source = document.createElement("source");
-            source.src = sources[i].audio;
-            console.log(sources[i].audio);
-            source.addEventListener("load", () => {
-                loadedSources++;
+// function loadSources(sources) {
+//     return new Promise((resolve, reject) => {
+//         let loadedSources = 0;
+//         for (let i in sources) {
+//             let source = document.createElement("source");
+//             source.src = sources[i].audio;
+//             console.log(sources[i].audio);
+//             source.addEventListener("load", () => {
+//                 loadedSources++;
 
-                if (loadedSources === sources.length) {
-                    resolve();
-                }
-            });
+//                 if (loadedSources === sources.length) {
+//                     resolve();
+//                 }
+//             });
 
-            myAudio.appendChild(source);
-        }
-        console.log(sources);
-    });
-}
+            
+//         }
+//         console.log(sources);
+//     });
+// }

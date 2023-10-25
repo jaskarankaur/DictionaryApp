@@ -72,6 +72,10 @@ hr{
     cursor: pointer;
 }
 
+.wordSpell button{
+    border: none;
+}
+
 .wordSearched{
     margin: 1.3rem 0rem;
 }
